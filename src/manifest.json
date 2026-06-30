@@ -1,0 +1,29 @@
+{
+    "name": "Plata",
+    "manifest_version": 3,
+    "version": "0.1",
+    "homepage_url": "https://github.com/PeaterPita/Plata",
+    "description": "Plata",
+    "icons": {
+        "48": "icons/plata-48.png"
+    },
+    "permissions": [
+        "activeTab",
+        "contextMenus"
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "plata@peaterpita.com",
+            "data_collection_permissions": {
+                "required": [
+                    "none"
+                ]
+            }
+        }
+    },
+    "action": {
+        "default_icon": "icons/plata-32.png",
+        "default_title": "Plata",
+        "default_popup": "popup/main.html"
+    }
+}
