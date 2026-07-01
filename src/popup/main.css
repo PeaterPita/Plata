@@ -19,13 +19,16 @@ body {
 }
 
 .searchBar {
-    width: 90%;
     display: flex;
-    margin: 5px;
+    width: 90%;
+    margin: 5px auto;
 }
 
 
 #search {
+    flex: 1;
+    border: 3px solid var(--border);
+    outline: none;
     background: var(--background);
     color: var(--text);
 
@@ -41,7 +44,10 @@ body {
 
     background: var(--border);
     border-radius: 0px;
+    outline: none;
+    border: none;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 
@@ -95,19 +101,16 @@ body {
     border-collapse: collapse;
 }
 
-#orders th,
 #orders td {
     border-bottom: 1px solid var(--border)
 }
 
-#orders th:first-child,
 #orders td:first-child {
     color: var(--sell);
     text-align: left;
 }
 
 
-#orders th:last-child,
 #orders td:last-child {
     color: var(--border)
 }
