@@ -1,3 +1,118 @@
+:root {
+    --text: #a4a9aa;
+    --background: #071013;
+    --border: #418fa5;
+    --border-active: #1bb194;
+    --border-hover: #5ff5ff;
+
+    --sell: #cb4a9e;
+    --buy: #209e70;
+}
+
+
+body {
+    width: 320px;
+    margin: 0;
+    padding: 12px;
+    background: var(--background);
+    color: var(--text)
+}
+
+.searchBar {
+    width: 90%;
+    display: flex;
+    margin: 5px;
+}
+
+
+#search {
+    background: var(--background);
+    color: var(--text);
+
+}
+
+#search:focus {
+    border-color: var(--border-active);
+}
+
+#btn {
+    width: 40px;
+    height: 30px;
+
+    background: var(--border);
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+#pieces {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: .2rem;
+    margin-bottom: 12px;
+}
+
+.piece-btn {
+    width: 55px;
+    height: 55px;
+    background: var(--background);
+    cursor: pointer;
+
+    border-radius: 50%;
+    border: 3px solid var(--border);
+    padding: 0;
+    overflow: hidden;
+
+    transition: color .3s ease, border .3s ease, background .3s ease, box-shadow .3s ease;
+}
+
+.piece-btn:hover {
+    border-color: var(--border-hover);
+
+}
+
+.piece-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
 .piece-btn.selected {
-    border-color: red;
+    border-color: var(--border-active);
+}
+
+
+#orders {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#orders th,
+#orders td {
+    border-bottom: 1px solid var(--border)
+}
+
+#orders th:first-child,
+#orders td:first-child {
+    color: var(--sell);
+    text-align: left;
+}
+
+
+#orders th:last-child,
+#orders td:last-child {
+    color: var(--border)
+}
+
+#orders td:empty::after {
+    content: "-";
+    color: #555;
 }
