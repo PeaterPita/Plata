@@ -1,6 +1,8 @@
-import { selectPiece } from "../popup/main.js";
 
-export function renderPeices(set, selectedSlug) {
+const results = document.querySelector("#results")
+
+
+export function renderPeices(set, selectedSlug, onSelect) {
     document.querySelector("#pieces")?.remove();
 
     const pieces = document.createElement("div");
@@ -20,7 +22,7 @@ export function renderPeices(set, selectedSlug) {
         img.alt = item.i18n.en.name;
 
         btn.appendChild(img);
-        btn.addEventListener("click", () => selectPiece(item.slug))
+        btn.addEventListener("click", () => onSelect(item.slug))
         pieces.appendChild(btn);
     }
     results.prepend(pieces);
@@ -35,8 +37,8 @@ export function renderOrders(orders) {
 
 
     const header = table.insertRow();
-    header.insertCell().textContent = "Buy";
     header.insertCell().textContent = "Sell";
+    header.insertCell().textContent = "Buy";
 
     const rowCount = Math.max(orders.buy.length, orders.sell.length);
 

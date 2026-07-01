@@ -3,11 +3,13 @@ import { slugify } from "../lib/util.js";
 import { getItemSet, getTopOrders, getItemIndex } from "../lib/wfm.js";
 
 const search = document.querySelector("#search")
-const results = document.querySelector("#results")
 
 
 async function doSearch(text) {
     if (!text) return;
+    const results = document.querySelector("#results")
+
+
 
     const slug = await slugify(text);
     if (!slug) {
@@ -37,16 +39,13 @@ async function doSearch(text) {
 
     const rootPeice = set.find(item => item.setRoot) ?? set[0];
 
-    renderPeices(set, rootPeice.slug)
+    renderPeices(set, rootPeice.slug, selectPiece)
     await selectPiece(rootPeice.slug)
-
-    // const orders = await getTopOrders(rootPeice.slug);
-    // results.textContent = JSON.stringify({ orders, set }, null, 2);
 }
 
 
 
-export async function selectPiece(itemSlug) {
+async function selectPiece(itemSlug) {
     const orders = await getTopOrders(itemSlug);
     renderOrders(orders);
 
