@@ -69,6 +69,9 @@ search.addEventListener("keydown", (evt) => {
 
 document.querySelector("#btn").addEventListener("click", () => doSearch(search.value))
 
+const manifest = chrome.runtime.getManifest();
+document.querySelector("#version").textContent = `v${manifest.version}`;
+document.querySelector("#homepage").href = manifest.homepage_url;
 
 
 const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });

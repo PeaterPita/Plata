@@ -119,3 +119,37 @@ body {
     content: "-";
     color: #555;
 }
+
+
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 5px;
+    border-top: 1px solid var(--text);
+}
+
+
+#homepage {
+    display: flex;
+    opacity: .7;
+
+    transition: opacity .3s ease;
+}
+
+#homepage:hover {
+    opacity: 1;
+}
+
+
+#homepage img {
+    width: 28px;
+    height: 28px;
+}
+
+#version {
+    font-size: .8rem;
+}
