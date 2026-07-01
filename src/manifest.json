@@ -9,7 +9,12 @@
     },
     "permissions": [
         "activeTab",
-        "contextMenus"
+        "contextMenus",
+        "storage"
+    ],
+    "host_permissions": [
+        "https://api.warframe.market/*",
+        "https://wiki.warframe.com/*"
     ],
     "browser_specific_settings": {
         "gecko": {
