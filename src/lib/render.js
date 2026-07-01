@@ -18,9 +18,11 @@ export function renderPeices(set, selectedSlug, onSelect) {
 
 
         const img = document.createElement("img");
-        img.src = `https://warframe.market/static/assets/${item.i18n.en.icon}`;
-        img.alt = item.i18n.en.name;
+        img.src = item.i18n.en.subIcon
+            ? `https://warframe.market/static/assets/${item.i18n.en.subIcon}`
+            : `https://warframe.market/static/assets/${item.i18n.en.icon}`;
 
+        img.alt = item.i18n.en.name;
         btn.appendChild(img);
         btn.addEventListener("click", () => onSelect(item.slug))
         pieces.appendChild(btn);

@@ -73,7 +73,7 @@ document.querySelector("#btn").addEventListener("click", () => doSearch(search.v
 
 const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 if (tab?.url?.startsWith("https://wiki.warframe.com/w/")) {
-    const displayName = new URL(tab.url).pathname.replace("/w/", "").replace(/_/g, " ");
+    const displayName = new URL(tab.url).pathname.replace("/w/", "").replace(/[/_]/g, " ");
     search.value = displayName;
 }
 
