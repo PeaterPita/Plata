@@ -33,7 +33,13 @@ async function doSearch(text) {
 
 
 async function showPieces(slug) {
-    const set = await getItemSet(slug);
+    const set = (await getItemSet(slug)).toSorted((a, b) => {
+        if (a.setRoot !== b.setRoot) {
+            return a.setRoot ? -1 : 1;
+        }
+
+        return (a.i18n.en.name).localeCompare(b.i18n.en.name);
+    });
 
     const selected = set.find(item => item.slug === slug)
         ?? set.find(item => item.setRoot)
