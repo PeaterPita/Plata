@@ -8,27 +8,32 @@ const results = document.querySelector("#results")
 
 async function doSearch(text) {
     if (!text) return;
-    const slug = await slugify(text);
-
+    const slug = await resolveSearch(text);
 
     if (!slug) {
         results.textContent = "Invalid Item";
         return;
     }
+    await showPieces(slug);
+}
 
-    try {
-        await showPieces(slug);
-    } catch {
-        const index = await getItemIndex();
-        const match = Object.entries(index).find(([, item]) => (
-            item.name.toLowerCase().includes(text.trim().toLowerCase())
-        ));
-        if (!match) {
-            results.textContent = "No Item Found";
-            return;
-        }
-        await showPieces(match[0])
-    }
+async function resolveSearch(text) {
+    const index = await getItemIndex();
+    const slug = slugify(text);
+
+    if (index[slug]) return slug;
+    if (index[`${slug}_set`]) return `${slug}_set`;
+
+    const match = Object.entries(index).find(([, item]) => (
+        item.name.toLowerCase().includes(text.trim().toLowerCase())
+    ));
+
+    if (!match) return null;
+
+    console.log("match")
+    console.log(match)
+
+    return match[0];
 }
 
 
@@ -92,5 +97,9 @@ if (tab?.url?.startsWith("https://wiki.warframe.com/w/")) {
         showPieces(lastSlug);
     }
 }
+
+
+
+
 
 
