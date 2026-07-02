@@ -11,7 +11,6 @@ async function refreshItemIndex() {
     )));
 
     await chrome.storage.local.set({ itemIndex: index, itemIndexDate: Date.now() });
-
     return index;
 }
 
@@ -56,7 +55,7 @@ export async function getItemSet(slug) {
         ))
     );
 
-    await chrome.storage.local.set(set);
+    await chrome.storage.session.set(set);
     return items;
 }
 

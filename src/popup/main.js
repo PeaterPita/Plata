@@ -1,46 +1,47 @@
-import { renderOrders, renderPeices } from "../lib/render.js";
+import { renderOrders, renderPieces } from "../lib/render.js";
 import { slugify } from "../lib/util.js";
 import { getItemSet, getTopOrders, getItemIndex } from "../lib/wfm.js";
 
 const search = document.querySelector("#search")
+const results = document.querySelector("#results")
 
 
 async function doSearch(text) {
     if (!text) return;
-    const results = document.querySelector("#results")
-
-
-
     const slug = await slugify(text);
+
+
     if (!slug) {
         results.textContent = "Invalid Item";
         return;
     }
 
-
-    let set;
     try {
-        set = await getItemSet(slug);
+        await showPieces(slug);
     } catch {
         const index = await getItemIndex();
         const match = Object.entries(index).find(([, item]) => (
             item.name.toLowerCase().includes(text.trim().toLowerCase())
         ));
-
-
         if (!match) {
             results.textContent = "No Item Found";
             return;
         }
-        set = await getItemSet(match[0])
+        await showPieces(match[0])
     }
+}
 
 
+async function showPieces(slug) {
+    const set = await getItemSet(slug);
 
-    const rootPeice = set.find(item => item.setRoot) ?? set[0];
+    const selected = set.find(item => item.slug === slug)
+        ?? set.find(item => item.setRoot)
+        ?? set[0];
 
-    renderPeices(set, rootPeice.slug, selectPiece)
-    await selectPiece(rootPeice.slug)
+    search.value = selected.i18n.en.name;
+    renderPieces(set, selected.slug, selectPiece);
+    await selectPiece(selected.slug);
 }
 
 
@@ -50,15 +51,16 @@ async function selectPiece(itemSlug) {
     renderOrders(orders);
 
 
-    document.querySelectorAll(".piece-btn").forEach(btn => (
-        btn.classList.toggle("selected", btn.dataset.slug === itemSlug)
-    ));
+    document.querySelectorAll(".piece-btn").forEach(btn => {
+        const isSelected = btn.dataset.slug === itemSlug;
 
-
+        btn.classList.toggle("selected", isSelected)
+        if (isSelected) {
+            search.value = btn.title;
+        }
+    });
+    await chrome.storage.session.set({ lastSlug: itemSlug });
 }
-
-
-
 
 
 search.addEventListener("keydown", (evt) => {
@@ -78,6 +80,11 @@ const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 if (tab?.url?.startsWith("https://wiki.warframe.com/w/")) {
     const displayName = new URL(tab.url).pathname.replace("/w/", "").replace(/[/_]/g, " ");
     search.value = displayName;
+} else {
+    const { lastSlug } = await chrome.storage.session.get("lastSlug");
+    if (lastSlug) {
+        showPieces(lastSlug);
+    }
 }
 
 

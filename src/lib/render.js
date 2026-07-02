@@ -2,7 +2,7 @@
 const results = document.querySelector("#results")
 
 
-export function renderPeices(set, selectedSlug, onSelect) {
+export function renderPieces(set, selectedSlug, onSelect) {
     document.querySelector("#pieces")?.remove();
 
     const pieces = document.createElement("div");
