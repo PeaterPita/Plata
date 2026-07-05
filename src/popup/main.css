@@ -27,7 +27,8 @@ body {
 
 #search {
     flex: 1;
-    border: 3px solid var(--border);
+    border: 2px solid var(--border);
+    padding: 5px 10px;
     outline: none;
     background: var(--background);
     color: var(--text);
@@ -43,6 +44,7 @@ body {
     height: 30px;
 
     background: var(--border);
+    border: 2px solid var(--border);
     border-radius: 0px;
     outline: none;
     border: none;
