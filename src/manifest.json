@@ -5,11 +5,12 @@
     "homepage_url": "https://github.com/PeaterPita/Plata",
     "description": "Plata",
     "icons": {
-        "48": "icons/plata-48.png"
+        "32": "icons/plata-32.png",
+        "48": "icons/plata-48.png",
+        "96": "icons/plata-96.png",
+        "128": "icons/plata-128.png"
     },
     "permissions": [
-        "activeTab",
-        "contextMenus",
         "storage"
     ],
     "host_permissions": [
@@ -27,7 +28,12 @@
         }
     },
     "action": {
-        "default_icon": "icons/plata-32.png",
+        "default_icon": {
+            "32": "icons/plata-32.png",
+            "48": "icons/plata-48.png",
+            "96": "icons/plata-96.png",
+            "128": "icons/plata-128.png"
+        },
         "default_title": "Plata",
         "default_popup": "popup/main.html"
     }

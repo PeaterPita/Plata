@@ -1,2 +1,9 @@
 web-ext-artifacts/
 .direnv/
+
+
+
+src/icons/plata-32.png
+src/icons/plata-48.png
+src/icons/plata-96.png
+src/icons/plata-128.png
