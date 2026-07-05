@@ -11,6 +11,5 @@
 
 
 
-
 ## Resources
 - [warframe.market API Docs](https://docs.warframe.market/docs/intro)
