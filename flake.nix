@@ -38,7 +38,7 @@
 
         installPhase = ''
           mkdir -p $out
-          HOME=$TMPDIR web-ext build --source-dir . --artifacts-dir $out --overwrite-dest --ignore-files "icons/Hero.svg" --ignore-files "icons/Plata.svg"
+          HOME=$TMPDIR web-ext build --source-dir . --artifacts-dir $out --overwrite-dest --ignore-files "icons/Hero.webp" --ignore-files "icons/Plata.svg"
         '';
 
       };
